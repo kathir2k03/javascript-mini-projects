@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LengthConventor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+            font-family: "poppins", sans-serif;
+        }
+       body{
+         background-color: lemonchiffon;
+       }
+        #main{
+            margin: 0 auto;
+            margin-top: 100px;
+           background-color: black;
+           color: white;
+            height: auto;
+            width: 300px;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            align-items: center;
+            border-radius: 10px;
+        }
+        input{
+        border-radius: 5px;
+        margin-top: 20px;
+        padding: 10px;
+        width: 70%;
+        }
+       button{
+        display: block;
+        background-color: lemonchiffon;
+        border-radius: 5px;
+        margin: 10px;
+        padding: 10px;
+        width: 70%;
+       }
+       h1{
+        font-size: 1.6rem;
+       }
+       .result{
+        display: inline;
+        color: white;
+        margin-top: 10px;
+        font-size: 1.5rem;
+       }
+       @media all and (max-width:520px) {
+        body{
+            background-color: black;
+            margin-top: 100px;
+        }
+        #main{
+            margin: 0 ;
+            margin-top: 0px;
+           background-color: black;
+           color: white;
+            height: auto;
+            width: auto;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            align-items: center;
+            border-radius: 0px;
+        }
+       }
+    </style>
+</head>
+<body>
+   <div id="main">
+    <h1>cm to inches</h1>
+    <input  type="number" placeholder="length in cm" id="cm">
+    <div class="result" id="length-result"></div>
+    <button id="length-btn" type="submit">Convert to inches</button>
+    <h1>inches to cm</h1>
+    <input type="number" placeholder="cm in length" id="length">
+    <div class="result" id="cm-result"></div>
+    <button id="cm-btn" type="submit">Convert to cm</button>
+    </div>
+   
+<script>
+
+ //converting cm to inches  
+
+let lengthbtn = document.getElementById("length-btn")
+let lengthresult = document.getElementById("length-result")
+
+    lengthbtn.addEventListener ("click", function(){
+    let cm = Number(document.getElementById("cm").value)
+    let lresults= cm /2.54
+    console.log("length " +lresults)
+    lengthresult.innerHTML = lresults.toFixed(2) +" inches";
+    })
+    
+ //converting inches to cm 
+
+ let cmbtn = document.getElementById("cm-btn")
+ let cmresult = document.getElementById("cm-result")
+
+    cmbtn.addEventListener ("click", function(){
+    let length = Number(document.getElementById("length").value)
+    let cmresults= length / 0.393701
+   console.log( "cm " + cmresults)
+    cmresult.innerHTML = cmresults.toFixed(2) +" cm";
+    })
+    
+   
+</script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Conventor App</title>
+    
+</head>
+   <style>
+    body{
+        background-color: bisque;
+    }
+    .container{
+        margin: 0 auto;
+        margin-top: 200px;
+        color: blanchedalmond;
+        height: auto;
+        width: 400px;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 25px;
+        font-family: sans-serif;
+    }
+    .box{
+        display: flex;
+         justify-content: space-around;
+    }
+     select{
+        background-color: rgb(218, 100, 32);
+        display:block;
+        width: 100%;
+        height: 30px;
+        padding: 5px;
+        border-radius: 5px;
+        color: black;
+        margin:10px 0px ;
+    }
+    input {
+        width: 93%;
+        height: 15px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+     h1{
+        text-align: center;
+     }
+     .btn{
+        display: flex;
+        justify-content: center;
+     }
+    button{
+        background-color: rgb(235, 187, 64);
+        display:block;
+        width: 50%;
+        height: 30px;
+        padding: 5px;
+        border-radius: 5px;
+        color: black;
+        margin:10px 0px ;
+    }
+    h2{
+        margin-top:25px;
+        display: none;  
+        text-align: center;
+        
+        color: red;
+    }
+    @media all and (max-width:520px) {
+        body{
+            background-color: black;
+        }
+    }
+   </style>
+<body>
+    <div class="container">
+        <h1>Currency Convertor</h1>
+        <div class="box">
+            <div class="left-box">
+                <select name="currency" class="currency">
+                </select>
+                <input type="number" name="" id="input">
+            </div>
+            <div class="right-box">
+                <select name="currency" class="currency"></select>
+                <input type="number" name="" id="result">
+            </div>
+        </div>
+        <h2 id="h2">Select different options</h2>
+        <div class="btn">
+            
+            <button id="btn">Convert</button>
+        </div>
+        
+    </div>
+    
+<script>
+    let select = document.querySelectorAll(".currency")
+    let btn = document.getElementById("btn")
+    let input = document.getElementById("input")
+
+    // console.log(result)
+    //fetching currency names
+    fetch("https://api.frankfurter.app/currencies")
+    .then( res =>res.json())
+    .then(res => displayDropDown(res))
+
+    function displayDropDown(res){
+    let curr = Object.entries(res)
+      for (let i=0; i<curr.length; i++){
+    let opt = `<option value="${curr[i][0]}">${curr[i][0]}</option>`
+    select[0].innerHTML += opt
+    select[1].innerHTML += opt
+       }
+    }
+    let h2 = document.getElementById("h2") 
+      
+    //logic for convertion
+    btn.addEventListener ("click" ,()=>{
+    let curr1 = select[0].value
+    let curr2 = select[1].value
+    let inputval = input.value
+    
+    if(curr1===curr2){
+       h2.style.display = "block"
+    } 
+    else {
+        h2.style.display = "none"
+       convert (curr1,curr2,inputval)
+    }
+    })
+ 
+    //fetching calculation
+   function convert (curr1,curr2,inputval){
+    const host = 'api.frankfurter.app';
+   fetch(`https://${host}/latest?amount=${inputval}&from=${curr1}&to=${curr2}`)
+  .then(resp => resp.json())
+  .then((data) => {
+  document.getElementById("result").value = Object.values(data.rates)
+  });
+   }
+
+    
+</script>
+
+</body>
+</html>

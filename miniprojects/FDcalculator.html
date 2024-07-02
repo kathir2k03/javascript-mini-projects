@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LengthConventor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+            font-family: "poppins", sans-serif;
+        }
+       body{
+         background-color: lemonchiffon;
+       }
+        #main{
+            margin: 0 auto;
+            margin-top: 250px;
+           background-color: black;
+           color: white;
+            height: auto;
+            width: 300px;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            align-items: center;
+            border-radius: 10px;
+        }
+        input{
+        border-radius: 5px;
+        margin-top: 20px;
+        padding: 10px;
+        width: 70%;
+        }
+       button{
+        display: block;
+        background-color: lemonchiffon;
+        border-radius: 5px;
+        margin: 10px;
+        padding: 10px;
+        width: 70%;
+       }
+       h1{
+        font-size: 1.6rem;
+       }
+       .result{
+        display: inline;
+        color: white;
+        margin-top: 10px;
+        font-size: 1.5rem;
+       }
+       @media all and (max-width:520px) {
+        body{
+            background-color: black;
+            margin-top: 100px;
+        }
+        #main{
+            margin: 0 ;
+            /* margin-top: 0px; */
+           background-color: black;
+           color: white;
+            height: auto;
+            width: auto;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            align-items: center;
+            border-radius: 0px;
+        }
+       }
+    </style>
+</head>
+<body>
+   <div id="main">
+    <h1>FD Rate Calculator</h1>
+    <input  type="number" placeholder="tenure months" id="months">
+    <div class="result" id="result"></div>
+    <button id="btn" type="submit">Calculate</button>
+  </div>
+   
+<script>
+
+ // fd calculator using functions  
+
+let btns = document.getElementById("btn")
+let result = document.getElementById("result")
+
+let calc =  function (){
+   let months = Number(document.getElementById("months").value)
+    let rate = 0
+    if(months < 3){
+        rate = 5.8
+    }
+    else if( months >= 3 && months <= 6){
+        rate = 6.5
+    }
+    else if( months >= 7 && months <= 9){
+        rate = 6.8
+    }
+    else {
+        rate = 7
+     }
+    return rate
+   }
+
+    btns.addEventListener ("click", function(){
+    let FDrate = calc()
+    console.log(FDrate +"% intrest")
+    result.innerHTML = FDrate +"% intrest";    
+    })  
+</script>
+
+</body>
+</html>
